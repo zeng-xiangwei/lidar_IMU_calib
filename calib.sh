@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bag_path="/home/ha/rosbag/li_calib_data"
+bag_path="/home/dut-zxw/zxw/data_bag/LI-Calib"
 
 outdoor_sync_bag_name=(
 #"Court-01.bag"

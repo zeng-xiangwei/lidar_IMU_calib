@@ -1,3 +1,35 @@
+# ubuntu 20.04 + ROS Noetic
+
+修改了
+`include/utils/dataset_reader.h`，在 read 函数中添加返回值。
+Kontiki 中，修改了 `thirdparty/Kontiki/include/kontiki/sensors/constant_bias_imu.h`，给 LockGyroscopeBias 函数，以及 LockAccelerometerBias 函数添加返回值。
+
+安装方法
+```shell
+# init ROS workspace
+mkdir -p ~/catkin_li_calib/src
+cd ~/catkin_li_calib/src
+catkin_init_workspace
+
+# Clone the source code for the project and build it. 
+git clone https://github.com/zeng-xiangwei/lidar_IMU_calib.git
+
+# ndt_omp，catkin_make之前，修改ndt_omp中cmakelist的c++11为14，将pcl 1.7改成 1.10
+wstool init
+wstool merge lidar_IMU_calib/depend_pack.rosinstall
+wstool update
+# Pangolin
+cd lidar_imu_calib_beta
+./build_submodules.sh
+## build
+cd ../..
+catkin_make
+source ./devel/setup.bash
+```
+---
+# 以下为原始内容
+
+---
 # LI-Calib
 
 ## Overview
