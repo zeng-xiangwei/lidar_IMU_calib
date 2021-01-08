@@ -166,6 +166,7 @@ public:
 
     std::cout << lidar_topic << ": " << data_->scan_data_.size() << std::endl;
     std::cout << imu_topic << ": " << data_->imu_data_.size() << std::endl;
+    return true;
   }
 
 
@@ -177,11 +178,11 @@ public:
   /// selected data [scan_0, scan_N-1],[IMU_0, IMU_N]
   /// time  [scan_0.t, scan_N.t)
   void adjustDataset() {
-    assert(imu_data.size() > 0 && "No IMU data. Check your bag and imu topic");
-    assert(scan_data.size() > 0 && "No scan data. Check your bag and lidar topic");
+    assert(imu_data_.size() > 0 && "No IMU data. Check your bag and imu topic");
+    assert(scan_data_.size() > 0 && "No scan data. Check your bag and lidar topic");
 
-    assert(scan_timestamps.front() < imu_data.back().timestamp
-           && scan_timestamps.back() > imu_data.front().timestamp
+    assert(scan_timestamps_.front() < imu_data_.back().timestamp
+           && scan_timestamps_.back() > imu_data_.front().timestamp
            && "Unvalid dataset. Check your dataset.. ");
 
     if (scan_timestamps_.front() > imu_data_.front().timestamp) {

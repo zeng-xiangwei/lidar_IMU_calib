@@ -32,6 +32,8 @@ find_package(Pangolin REQUIRED)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/Kontiki)
 
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backward-cpp-master)
+
 # Set link libraries used by all binaries
 list(APPEND thirdparty_libraries
         ${Boost_LIBRARIES}
@@ -65,5 +67,12 @@ target_link_libraries(li_calib_lib ${thirdparty_libraries})
 add_executable(li_calib_gui
         test/li_calib_gui.cpp
         src/ui/calib_helper.cpp
-        src/ui/calib_ui.cpp)
+        src/ui/calib_ui.cpp
+        # ${BACKWARD_ENABLE}
+        )
+
+# This will add libraries, definitions and include directories needed by backward
+# by setting each property on the target.
+# add_backward(li_calib_gui)
+
 target_link_libraries(li_calib_gui li_calib_lib ${thirdparty_libraries})
